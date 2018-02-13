@@ -39,7 +39,7 @@ function studentList() {
   * @return {String} the html form
   */
 function studentForm() {
-  var form = "<form method='POST'>";
+  var form = "<form method='POST' enctype='multipart/form-data'>";
   form +=    "  <fieldset>";
   form +=    "   <label for='name'>Student Name</label>";
   form +=    "   <input type='text' name='name'/>";
@@ -52,6 +52,9 @@ function studentForm() {
   form +=    "   <label for='description'>Description</label>";
   form +=    "   <textarea name='description'></textarea>";
   form +=    "  </fieldset>";
+  form +=    "<fieldset>";
+  form +=    "<label for='image'>Image</label>";
+  form +=    "<input type='submit' value='Choose File'>";
   form +=    "  <input type='submit' value='add student'/>";
   form +=    "</form>"
   return form;
@@ -80,7 +83,7 @@ function handleRequest(req, res) {
     // student object out of it.
     req.on('end', function(){
       var student = qs.parse(body);
-
+      console.log(params);      
       // TODO: Validate student object
 
       // Save *sanitized* student object to cache
